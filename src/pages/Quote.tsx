@@ -1,6 +1,5 @@
 import ContactForm from '@/components/ContactForm';
 import SolarEstimator from '@/components/SolarEstimator';
-import React from 'react';
 
 function Quote() {
 	return (
