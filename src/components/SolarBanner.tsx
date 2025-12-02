@@ -23,7 +23,7 @@ export default function SolarBanner() {
 						<div className='hidden lg:flex items-center gap-1.5'>
 							<MapPin className='w-4 h-4 text-yellow-400' />
 							<span className='text-gray-700'>
-								1105, Pearls Best Heights 1, Netaji Subhash Place
+								25/2 L-Sector, Awas Vikas, Keshavpuram Kanpur 17
 							</span>
 						</div>
 
@@ -36,13 +36,13 @@ export default function SolarBanner() {
 							<Phone className='w-4 h-4 text-yellow-400' />
 							<div className='flex flex-col'>
 								<span className='text-gray-800 font-semibold'>
-									011-47065545
+									82-9908-7358
 								</span>
 								<a
-									href='mailto:info@hygridsolar.com'
+									href='mailto:kapil9452@gmail.com'
 									className='text-cyan-500 hover:text-cyan-600 hidden sm:block'
 								>
-									info@hygridsolar.com
+									kapil9452@gmail.com
 								</a>
 							</div>
 						</div>
