@@ -1,4 +1,5 @@
 import ContactForm from '@/components/ContactForm';
+import { Link } from 'react-router-dom';
 const services = [
 	{
 		icon: '⚡',
@@ -57,7 +58,7 @@ export default function AboutPage() {
 					<div className='grid md:grid-cols-2 gap-12 items-center'>
 						<div>
 							<h1 className='text-5xl md:text-6xl font-bold text-foreground mb-6 leading-tight'>
-								Welcome to <span className='text-primary'>SolarHub</span>
+								Welcome to <span className='text-primary'>Kapil Solar</span>
 							</h1>
 							<p className='text-xl text-muted-foreground mb-8 leading-relaxed'>
 								A trusted name in clean and affordable solar energy solutions.
@@ -157,9 +158,11 @@ export default function AboutPage() {
 							To help every household and business transition to clean,
 							sustainable, and cost-effective solar energy.
 						</p>
-						<button className='mt-10 px-8 py-4 bg-primary-foreground text-primary rounded-lg font-bold text-lg hover:bg-primary-foreground/90 transition-colors'>
-							Start Your Solar Journey
-						</button>
+						<Link to='/contact'>
+							<button className='mt-10 px-8 py-4 bg-primary-foreground text-primary rounded-lg font-bold text-lg hover:bg-primary-foreground/90 transition-colors'>
+								Start Your Solar Journey
+							</button>
+						</Link>
 					</div>
 				</div>
 			</section>
@@ -174,7 +177,7 @@ export default function AboutPage() {
 								<div className='flex h-8 w-8 items-center justify-center rounded-full bg-card text-foreground font-bold'>
 									☀️
 								</div>
-								<span className='text-xl font-bold text-card'>SolarHub</span>
+								<span className='text-xl font-bold text-card'>Kapil Solar</span>
 							</div>
 							<p className='text-card/70'>
 								Clean energy solutions for a sustainable future.
@@ -251,7 +254,8 @@ export default function AboutPage() {
 								</li>
 								<li>
 									<a
-										href='#'
+										target='_blank'
+										href='https://facebook.com/share/1BoC2zxMYJ'
 										className='hover:text-card transition-colors'
 									>
 										Facebook

@@ -547,7 +547,7 @@ const SolarEstimator = () => {
 										<h4 className='font-semibold mb-1'>Government Subsidies</h4>
 										<p className='text-sm text-muted-foreground'>
 											Get up to ₹78,000 subsidy on residential installations
-											under PM-KUSUM scheme.
+											under PM Surya Ghar scheme.
 										</p>
 									</div>
 								</div>

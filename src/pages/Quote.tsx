@@ -16,7 +16,7 @@ function Quote() {
 								<div className='flex h-8 w-8 items-center justify-center rounded-full bg-card text-foreground font-bold'>
 									☀️
 								</div>
-								<span className='text-xl font-bold text-card'>SolarHub</span>
+								<span className='text-xl font-bold text-card'>Kapil Solar</span>
 							</div>
 							<p className='text-card/70'>
 								Clean energy solutions for a sustainable future.

@@ -1,4 +1,5 @@
 import ContactForm from '@/components/ContactForm';
+import { Link } from 'react-router-dom';
 
 const steps = [
 	{
@@ -208,9 +209,11 @@ export default function HowWeWorkPage() {
 					</div>
 
 					<div className='mt-12 text-center'>
-						<button className='px-8 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-colors'>
-							Get Your Free Consultation
-						</button>
+						<Link to='/contact'>
+							<button className='px-8 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-colors'>
+								Get Your Free Consultation
+							</button>
+						</Link>
 					</div>
 				</div>
 			</section>
@@ -225,7 +228,7 @@ export default function HowWeWorkPage() {
 								<div className='flex h-8 w-8 items-center justify-center rounded-full bg-card text-foreground font-bold'>
 									☀️
 								</div>
-								<span className='text-xl font-bold text-card'>SolarHub</span>
+								<span className='text-xl font-bold text-card'>Kapil Solar</span>
 							</div>
 							<p className='text-card/70'>
 								Clean energy solutions for a sustainable future.
@@ -302,7 +305,8 @@ export default function HowWeWorkPage() {
 								</li>
 								<li>
 									<a
-										href='#'
+										target='_blank'
+										href='https://facebook.com/share/1BoC2zxMYJ'
 										className='hover:text-card transition-colors'
 									>
 										Facebook

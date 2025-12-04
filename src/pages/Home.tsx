@@ -26,7 +26,7 @@ function Home() {
 							sustainable energy today.
 						</p>
 						<div className='flex flex-col sm:flex-row gap-4 justify-center'>
-							<Link to='/contact'>
+							<Link to='/quote'>
 								<Button className='bg-accent hover:bg-accent/90 text-accent-foreground px-8 py-6 text-lg font-semibold'>
 									Get Free Quote
 								</Button>
@@ -87,10 +87,10 @@ function Home() {
 									icon: '🛠️',
 								},
 								{
-									title: 'Energy Savings',
+									title: 'Accessories',
 									description:
-										'Reduce your electricity bills significantly with customized solar solutions',
-									icon: '💰',
+										'Get replacement or panel accessories support for the products sold',
+									icon: '🧰',
 								},
 							].map((service, i) => (
 								<div
@@ -216,7 +216,7 @@ function Home() {
 								<div className='flex h-8 w-8 items-center justify-center rounded-full bg-card text-foreground font-bold'>
 									☀️
 								</div>
-								<span className='text-xl font-bold text-card'>SolarHub</span>
+								<span className='text-xl font-bold text-card'>Kapil Solar</span>
 							</div>
 							<p className='text-card/70'>
 								Clean energy solutions for a sustainable future.
@@ -293,7 +293,8 @@ function Home() {
 								</li>
 								<li>
 									<a
-										href='#'
+										target='_blank'
+										href='https://facebook.com/share/1BoC2zxMYJ'
 										className='hover:text-card transition-colors'
 									>
 										Facebook
