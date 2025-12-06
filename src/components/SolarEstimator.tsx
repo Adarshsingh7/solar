@@ -18,7 +18,7 @@ import {
 import { Badge } from '@/components/ui/badge';
 import {
 	Calculator,
-	DollarSign,
+	IndianRupee,
 	TreePine,
 	Home,
 	AlertTriangle,
@@ -79,9 +79,6 @@ const SolarEstimator = () => {
 		if (!formData.monthlyBill || parseFloat(formData.monthlyBill) <= 0) {
 			newErrors.push('Monthly bill must be a positive number');
 		}
-		if (!formData.pinCode || !/^\d{6}$/.test(formData.pinCode)) {
-			newErrors.push('Pin code must be exactly 6 digits');
-		}
 		if (!formData.roofSpace || parseFloat(formData.roofSpace) <= 0) {
 			newErrors.push('Roof space must be a positive number');
 		}
@@ -106,23 +103,27 @@ const SolarEstimator = () => {
 
 		setTimeout(() => {
 			const consumption = parseFloat(formData.monthlyConsumption);
-			const roofSpace = parseFloat(formData.roofSpace);
+			const roofSpaceInSqFt = parseFloat(formData.roofSpace);
 			const rate = parseFloat(formData.electricityRate);
 			const isResidential = formData.propertyType === 'residential';
 
-			// System capacity calculation
+			// System capacity calculationSave Money
 			const systemSize = consumption / 120;
 
 			// Cost per kW based on capacity
 			let costPerKw: number;
-			if (systemSize <= 5) {
-				costPerKw = 60000;
-			} else if (systemSize <= 10) {
-				costPerKw = 55000;
+			if (isResidential) {
+				if (systemSize <= 5) {
+					costPerKw = 60000;
+				} else if (systemSize <= 10) {
+					costPerKw = 55000;
+				} else {
+					costPerKw = 50000;
+				}
 			} else {
-				costPerKw = 50000;
+				// Commercial/Industrial price: 40 per watt = 40,000 per kW
+				costPerKw = 40000;
 			}
-
 			const totalCost = systemSize * costPerKw;
 
 			// Subsidy calculation (residential only, up to 10kW)
@@ -142,9 +143,9 @@ const SolarEstimator = () => {
 			const monthlySavings = monthlyGeneration * rate;
 			const annualSavings = monthlySavings * 12;
 			const paybackPeriod = effectiveCost / monthlySavings / 12;
-			const co2Reduction = systemSize * 1200;
-			const requiredSpace = systemSize * 10;
-			const spaceAvailable = roofSpace >= requiredSpace;
+			const co2Reduction = systemSize * 1200; // 1kW reduces ~1200kg CO2/year
+			const requiredSpaceInSqFt = systemSize * 60; // 1kW requires 60 sq.ft
+			const spaceAvailable = roofSpaceInSqFt >= requiredSpaceInSqFt;
 
 			setResults({
 				systemSize,
@@ -156,7 +157,7 @@ const SolarEstimator = () => {
 				annualSavings,
 				paybackPeriod,
 				co2Reduction,
-				requiredSpace,
+				requiredSpace: requiredSpaceInSqFt,
 				spaceAvailable,
 			});
 
@@ -246,11 +247,11 @@ const SolarEstimator = () => {
 
 							<div>
 								<label className='block text-sm font-medium mb-1'>
-									Available Roof Space (sq. meters)
+									Available Roof Space (sq. feet)
 								</label>
 								<Input
 									type='number'
-									placeholder='e.g., 100'
+									placeholder='e.g., 1000'
 									value={formData.roofSpace}
 									onChange={(e) =>
 										handleInputChange('roofSpace', e.target.value)
@@ -343,7 +344,7 @@ const SolarEstimator = () => {
 								{/* Cost Breakdown */}
 								<div className='space-y-3'>
 									<h3 className='font-semibold flex items-center gap-2 text-foreground'>
-										<DollarSign
+										<IndianRupee
 											className='text-primary'
 											size={20}
 										/>
@@ -380,7 +381,7 @@ const SolarEstimator = () => {
 								{/* Savings */}
 								<div className='space-y-3'>
 									<h3 className='font-semibold flex items-center gap-2 text-foreground'>
-										<DollarSign
+										<IndianRupee
 											className='text-primary'
 											size={20}
 										/>
@@ -475,8 +476,8 @@ const SolarEstimator = () => {
 														: 'text-destructive'
 												}`}
 											>
-												Required: {results.requiredSpace.toFixed(1)} sq.m |
-												Available: {formData.roofSpace} sq.m
+												Required: {results.requiredSpace.toFixed(0)} sq.ft |
+												Available: {formData.roofSpace} sq.ft
 											</p>
 											{!results.spaceAvailable && (
 												<p className='text-xs text-destructive mt-1'>
@@ -498,7 +499,7 @@ const SolarEstimator = () => {
 							</CardHeader>
 							<CardContent className='space-y-4'>
 								<div className='flex items-start gap-3'>
-									<DollarSign
+									<IndianRupee
 										className='text-primary mt-1'
 										size={24}
 									/>
@@ -533,8 +534,7 @@ const SolarEstimator = () => {
 											Increase Property Value
 										</h4>
 										<p className='text-sm text-muted-foreground'>
-											Solar installations can increase your property value by up
-											to 4%.
+											Solar installations can increase your property value.
 										</p>
 									</div>
 								</div>
@@ -544,7 +544,7 @@ const SolarEstimator = () => {
 										size={24}
 									/> */}
 									<div>
-										<h4 className='font-semibold mb-1'>Government Subsidies</h4>
+										<h4 className='font-semibold mb-1'>central government subsidies</h4>
 										<p className='text-sm text-muted-foreground'>
 											Get up to ₹78,000 subsidy on residential installations
 											under PM Surya Ghar scheme.

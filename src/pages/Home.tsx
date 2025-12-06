@@ -87,6 +87,12 @@ function Home() {
 									icon: '🛠️',
 								},
 								{
+									title: 'Solar Panel Washing',
+									description:
+										'Just ₹99 per panel for cleaning twice a month to maintain peak efficiency.',
+									icon: '💧',
+								},
+								{
 									title: 'Accessories',
 									description:
 										'Get replacement or panel accessories support for the products sold',

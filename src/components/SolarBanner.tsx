@@ -46,12 +46,7 @@ export default function SolarBanner() {
 										95-8016-7154
 									</span>
 								</div>
-								<a
-									href='mailto:kapil9452@gmail.com'
-									className='text-cyan-500 hover:text-cyan-600 hidden sm:block'
-								>
-									kapil9452@gmail.com
-								</a>
+
 							</div>
 						</div>
 					</div>

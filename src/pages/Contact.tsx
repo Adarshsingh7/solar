@@ -1,7 +1,7 @@
 import ContactForm from '@/components/ContactForm';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { MapPin, Warehouse, Phone, Mail } from 'lucide-react';
+import { MapPin, Warehouse, Phone } from 'lucide-react';
 
 export const metadata = {
 	title: 'Contact Us - Solar Energy Solutions',
@@ -26,12 +26,6 @@ const contactDetails = [
 		icon: Phone,
 		title: 'Call Now',
 		details: ['8299087358', '9580167154'],
-		color: 'text-primary',
-	},
-	{
-		icon: Mail,
-		title: 'Email us now',
-		details: ['kapil9452@gmail.com', 'info@kapilsolar.in'],
 		color: 'text-primary',
 	},
 ];
