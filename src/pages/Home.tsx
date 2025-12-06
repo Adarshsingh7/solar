@@ -92,12 +92,12 @@ function Home() {
 										'Just ₹99 per panel for cleaning twice a month to maintain peak efficiency.',
 									icon: '💧',
 								},
-								{
-									title: 'Accessories',
-									description:
-										'Get replacement or panel accessories support for the products sold',
-									icon: '🧰',
-								},
+								// {
+								// 	title: 'Accessories',
+								// 	description:
+								// 		'Get replacement or panel accessories support for the products sold',
+								// 	icon: '🧰',
+								// },
 							].map((service, i) => (
 								<div
 									key={i}
