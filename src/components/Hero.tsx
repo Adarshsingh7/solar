@@ -31,7 +31,7 @@ export default function HeroSection() {
 
 				<p className='text-lg md:text-xl text-gray-200 max-w-2xl mb-8'>
 					Affordable, reliable solar solutions for homes and businesses in
-					Kanpur. Government subsidy assistance available.
+					Kanpur. Central Government subsidy assistance available.
 				</p>
 
 				<div className='flex gap-4'>

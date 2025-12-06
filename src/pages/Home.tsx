@@ -1,6 +1,7 @@
 /** @format */
 
 import ContactForm from '@/components/ContactForm';
+import Founder from '@/components/Founder';
 import HeroSection from '@/components/Hero';
 import SolarEstimator from '@/components/SolarEstimator';
 import { Button } from '@/components/ui/button';
@@ -10,6 +11,9 @@ function Home() {
 	return (
 		<>
 			<HeroSection />
+
+			<Founder />
+
 			<main className='flex-1'>
 				<section className='relative bg-linear-to-br from-primary via-primary/90 to-accent text-primary-foreground py-20 md:py-32 overflow-hidden'>
 					<div className='absolute inset-0 opacity-10'>

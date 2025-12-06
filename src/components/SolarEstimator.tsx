@@ -47,6 +47,7 @@ interface Results {
 	co2Reduction: number;
 	requiredSpace: number;
 	spaceAvailable: boolean;
+	numTreeEquivalent: number;
 }
 
 const SolarEstimator = () => {
@@ -80,10 +81,11 @@ const SolarEstimator = () => {
 			newErrors.push('Monthly bill must be a positive number');
 		}
 		if (!formData.roofSpace || parseFloat(formData.roofSpace) <= 0) {
-			newErrors.push('Roof space must be a positive number');
+			// newErrors.push('Roof space must be a positive number');
+			// setFormData((curr) => ({ ...curr, roofSpace: 0 }));
 		}
 		if (!formData.propertyType) {
-			newErrors.push('Please select property type');
+			// newErrors.push('Please select property type');
 		}
 		if (
 			!formData.electricityRate ||
@@ -107,35 +109,29 @@ const SolarEstimator = () => {
 			const rate = parseFloat(formData.electricityRate);
 			const isResidential = formData.propertyType === 'residential';
 
-			// System capacity calculationSave Money
+			// System size (kW)
 			const systemSize = consumption / 120;
 
-			// Cost per kW based on capacity
-			let costPerKw: number;
+			// Cost per kW
+			let costPerKw;
 			if (isResidential) {
-				if (systemSize <= 5) {
-					costPerKw = 60000;
-				} else if (systemSize <= 10) {
-					costPerKw = 55000;
-				} else {
-					costPerKw = 50000;
-				}
+				if (systemSize <= 5) costPerKw = 60000;
+				else if (systemSize <= 10) costPerKw = 55000;
+				else costPerKw = 50000;
 			} else {
-				// Commercial/Industrial price: 40 per watt = 40,000 per kW
-				costPerKw = 40000;
+				costPerKw = 40000; // commercial
 			}
+
 			const totalCost = systemSize * costPerKw;
 
-			// Subsidy calculation (residential only, up to 10kW)
+			// ✔ Correct subsidy calculation (residential only)
 			let subsidy = 0;
 			if (isResidential) {
-				const eligibleCapacity = Math.min(systemSize, 10);
-				if (eligibleCapacity <= 3) {
-					subsidy = eligibleCapacity * 18000;
-				} else {
-					subsidy = 3 * 18000 + (eligibleCapacity - 3) * 9000;
-				}
-				subsidy = Math.min(subsidy, 78000);
+				const firstSlab = Math.min(systemSize, 3);
+				const secondSlab = Math.max(systemSize - 3, 0);
+
+				subsidy = firstSlab * 30000 + Math.min(secondSlab, 7) * 9000;
+				subsidy = Math.min(subsidy, 72000);
 			}
 
 			const effectiveCost = totalCost - subsidy;
@@ -143,9 +139,10 @@ const SolarEstimator = () => {
 			const monthlySavings = monthlyGeneration * rate;
 			const annualSavings = monthlySavings * 12;
 			const paybackPeriod = effectiveCost / monthlySavings / 12;
-			const co2Reduction = systemSize * 1200; // 1kW reduces ~1200kg CO2/year
-			const requiredSpaceInSqFt = systemSize * 60; // 1kW requires 60 sq.ft
+			const co2Reduction = systemSize * 1200;
+			const requiredSpaceInSqFt = systemSize * 60;
 			const spaceAvailable = roofSpaceInSqFt >= requiredSpaceInSqFt;
+			const numTreeEquivalent = co2Reduction / 16;
 
 			setResults({
 				systemSize,
@@ -159,6 +156,7 @@ const SolarEstimator = () => {
 				co2Reduction,
 				requiredSpace: requiredSpaceInSqFt,
 				spaceAvailable,
+				numTreeEquivalent,
 			});
 
 			setIsCalculating(false);
@@ -361,7 +359,7 @@ const SolarEstimator = () => {
 										</div>
 										{results.subsidy > 0 && (
 											<div className='flex justify-between text-primary'>
-												<span>Government Subsidy</span>
+												<span>Central Government Subsidy</span>
 												<span className='font-semibold'>
 													- {formatIndianCurrency(results.subsidy)}
 												</span>
@@ -427,7 +425,7 @@ const SolarEstimator = () => {
 								</div>
 
 								{/* Environmental Impact */}
-								<div className='bg-primary/10 rounded-lg p-4'>
+								<div className='bg-primary/10 rounded-lg p-4 flex flex-col gap-5'>
 									<div className='flex items-center justify-between'>
 										<span className='text-sm font-medium text-foreground flex items-center gap-2'>
 											<TreePine size={16} />
@@ -435,6 +433,15 @@ const SolarEstimator = () => {
 										</span>
 										<Badge className='bg-primary'>
 											{results.co2Reduction.toFixed(0)} kg
+										</Badge>
+									</div>
+									<div className='flex items-center justify-between'>
+										<span className='text-sm font-medium text-foreground flex items-center gap-2'>
+											<TreePine size={16} />
+											Equivalent tree planting
+										</span>
+										<Badge className='bg-primary'>
+											{results.numTreeEquivalent.toFixed(0)}
 										</Badge>
 									</div>
 								</div>
@@ -544,9 +551,11 @@ const SolarEstimator = () => {
 										size={24}
 									/> */}
 									<div>
-										<h4 className='font-semibold mb-1'>central government subsidies</h4>
+										<h4 className='font-semibold mb-1'>
+											central government subsidies
+										</h4>
 										<p className='text-sm text-muted-foreground'>
-											Get up to ₹78,000 subsidy on residential installations
+											Get up to ₹72,000 subsidy on residential installations
 											under PM Surya Ghar scheme.
 										</p>
 									</div>
