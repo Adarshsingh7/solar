@@ -22,12 +22,12 @@ function Founder() {
 						<div className='relative'>
 							<div className='absolute inset-0 bg-yellow-400 rounded-full blur-2xl opacity-20 transform scale-110'></div>
 							<img
-								src='/founder.png'
+								src='/founder.jpg'
 								alt='Founder of Kapil Solar'
 								className='relative w-72 h-72 rounded-full object-cover shadow-2xl border-8 border-white'
 							/>
 							<div className='absolute -bottom-4 -right-4 bg-yellow-500 text-white px-5 py-2 rounded-full shadow-lg font-semibold text-sm'>
-								5+ Years Experience
+								10+ Years Experience
 							</div>
 						</div>
 					</div>
@@ -44,7 +44,7 @@ function Founder() {
 						</div>
 
 						<p className='text-slate-700 leading-relaxed'>
-							With over 5 years of experience in the renewable energy sector,
+							With over 10 years of experience in the renewable energy sector,
 							Kapil Kumar founded Kapil Solar with a vision to make clean,
 							sustainable energy accessible to every home and business in India.
 						</p>

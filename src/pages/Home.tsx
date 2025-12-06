@@ -295,7 +295,8 @@ function Home() {
 							<ul className='space-y-2 text-card/70'>
 								<li>
 									<a
-										href='#'
+										target='_blank'
+										href='https://www.instagram.com/kapilsolarkanpur?igsh=aWZhZ3c0OXN4bDRj&utm_source=ig_contact_invite '
 										className='hover:text-card transition-colors'
 									>
 										Instagram

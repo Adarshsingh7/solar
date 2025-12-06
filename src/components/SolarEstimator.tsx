@@ -131,7 +131,7 @@ const SolarEstimator = () => {
 				const secondSlab = Math.max(systemSize - 3, 0);
 
 				subsidy = firstSlab * 25000 + Math.min(secondSlab, 7) * 9000;
-				subsidy = Math.min(subsidy, 72000);
+				subsidy = Math.min(subsidy, 78000);
 			}
 
 			const effectiveCost = totalCost - subsidy;
@@ -555,7 +555,7 @@ const SolarEstimator = () => {
 											central government subsidies
 										</h4>
 										<p className='text-sm text-muted-foreground'>
-											Get up to ₹72,000 subsidy on residential installations
+											Get up to ₹78,000 subsidy on residential installations
 											under PM Surya Ghar scheme.
 										</p>
 									</div>
