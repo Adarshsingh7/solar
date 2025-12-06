@@ -130,7 +130,7 @@ const SolarEstimator = () => {
 				const firstSlab = Math.min(systemSize, 3);
 				const secondSlab = Math.max(systemSize - 3, 0);
 
-				subsidy = firstSlab * 30000 + Math.min(secondSlab, 7) * 9000;
+				subsidy = firstSlab * 25000 + Math.min(secondSlab, 7) * 9000;
 				subsidy = Math.min(subsidy, 72000);
 			}
 
