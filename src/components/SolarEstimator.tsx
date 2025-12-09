@@ -75,7 +75,7 @@ const SolarEstimator = () => {
 			!formData.monthlyConsumption ||
 			parseFloat(formData.monthlyConsumption) <= 0
 		) {
-			newErrors.push('Monthly consumption must be a positive number');
+			// newErrors.push('Monthly consumption must be a positive number');
 		}
 		if (!formData.monthlyBill || parseFloat(formData.monthlyBill) <= 0) {
 			newErrors.push('Monthly bill must be a positive number');
@@ -104,7 +104,14 @@ const SolarEstimator = () => {
 		setIsCalculating(true);
 
 		setTimeout(() => {
-			const consumption = parseFloat(formData.monthlyConsumption);
+			const monthly_bill =
+				parseFloat(formData.monthlyBill) > 1000
+					? parseFloat(formData.monthlyBill) - 300
+					: parseFloat(formData.monthlyBill);
+
+			const consumption = parseFloat(formData.monthlyConsumption)
+				? parseFloat(formData.monthlyConsumption)
+				: monthly_bill / parseFloat(formData.electricityRate);
 			const roofSpaceInSqFt = parseFloat(formData.roofSpace);
 			const rate = parseFloat(formData.electricityRate);
 			const isResidential = formData.propertyType === 'residential';
@@ -199,28 +206,31 @@ const SolarEstimator = () => {
 						<CardContent className='space-y-4'>
 							<div>
 								<label className='block text-sm font-medium mb-1'>
-									Monthly Electricity Consumption (kWh)
+									Average Monthly Electricity Bill (₹)
 								</label>
 								<Input
 									type='number'
-									placeholder='e.g., 300'
-									value={formData.monthlyConsumption}
+									min={0}
+									max={9900}
+									placeholder='e.g., 2400'
+									value={formData.monthlyBill}
 									onChange={(e) =>
-										handleInputChange('monthlyConsumption', e.target.value)
+										handleInputChange('monthlyBill', e.target.value)
 									}
 								/>
 							</div>
 
 							<div>
 								<label className='block text-sm font-medium mb-1'>
-									Average Monthly Electricity Bill (₹)
+									Monthly Electricity Consumption (kWh)
 								</label>
 								<Input
 									type='number'
-									placeholder='e.g., 2400'
-									value={formData.monthlyBill}
+									min={0}
+									placeholder='e.g., 300'
+									value={formData.monthlyConsumption}
 									onChange={(e) =>
-										handleInputChange('monthlyBill', e.target.value)
+										handleInputChange('monthlyConsumption', e.target.value)
 									}
 								/>
 							</div>
